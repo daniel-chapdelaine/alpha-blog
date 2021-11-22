@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit 
-
+    @article = Article.find(params[:id])
   end
 
   def create
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params.require(:article).permit(:title, :description))
     #render plain: @article.inspect
     if @article.save
-      flash[:notice] = "Article was created scucessfully."
+      flash[:notice] = "Article was created sucessfully."
       #redirect_to article_path(@article)
       redirect_to @article
     else 
@@ -33,7 +33,20 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article = Article.find(params[:id])
     
+    if @article.update(params.require(:article).permit(:title, :description))
+      flash[:notice] = "Article was updated sucessfully."
+      redirect_to @article
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
   end
 
 end
