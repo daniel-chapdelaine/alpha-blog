@@ -1,0 +1,30 @@
+<h1>Alpha bloggers</h1>
+
+<p><%= will_paginate @users %></p>
+
+<table>
+  <tr>
+    <tr>
+      <th>Blogger</th>
+      <th>Article Count</th>
+      <th colspan="2">Actions</th>
+      <th>Joined</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user|%> 
+      
+      <tr>
+        <td> <%= link_to user.username, user %> </td>
+        <td> <%= pluralize(user.articles.count, "article") %> </td>
+        <td> <%= link_to 'View Profile', user %> </td>
+        <td> <%= link_to 'Edit Profile', edit_user_path(user) %> </td>
+        <td> <%= time_ago_in_words(user.created_at) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<p><%= will_paginate @users %></p>

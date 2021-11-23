@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
 
+  def index
+    @users = User.paginate(page: params[:page], per_page: 5)
+  end
+
   def show
   end
 
@@ -11,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Welcom to the Alpha Blog"
+      flash[:notice] = "Welcome to the Alpha Blog"
       redirect_to articles_path
     else
       render 'new'
@@ -24,7 +28,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = "User was updated sucessfully."
-      redirect_to articles_path
+      redirect_to user_path
     else
       render 'edit'
     end
