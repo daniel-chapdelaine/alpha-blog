@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   def create
     # require/permit allow our application to whitelist title and description for use in our controller
     @article = Article.new(article_params)
+    @article.user = User.first
     #render plain: @article.inspect
     if @article.save
       flash[:notice] = "Article was created sucessfully."
