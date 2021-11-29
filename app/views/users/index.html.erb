@@ -19,8 +19,10 @@
         <td> <%= link_to user.username, user %> </td>
         <td> <%= pluralize(user.articles.count, "article") %> </td>
         <td> <%= link_to 'View Profile', user %> </td>
-        <td> <%= link_to 'Edit Profile', edit_user_path(user) %> </td>
-        <td> <%= time_ago_in_words(user.created_at) %> </td>
+        <% if logged_in? && @user == current_user %> 
+          <td> <%= link_to 'Edit Profile', edit_user_path(user) %> </td>
+          <td> <%= time_ago_in_words(user.created_at) %> </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
