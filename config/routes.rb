@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   # this shows how to exclude routes from resources if it is not needed or that it can be defined differently 
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end
