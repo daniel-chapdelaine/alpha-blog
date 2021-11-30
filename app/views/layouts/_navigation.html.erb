@@ -1,9 +1,12 @@
 <%= link_to "ALPHA BLOG", root_path  %>
 
 <%= link_to 'Bloggers', users_path %> | 
-<%= link_to 'Articles', articles_path  %> |
-<% if logged_in? %>
 
+<%= link_to 'Articles', articles_path  %> |
+
+<%= link_to 'Categories', categories_path  %> |
+
+<% if logged_in? %>
   <%= "(Admin)" if current_user.admin? %> 
   <%= link_to current_user.username, user_path(current_user) %> |
   <%= link_to 'Logout', logout_path, method: :delete %>
