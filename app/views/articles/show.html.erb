@@ -6,6 +6,12 @@
 </p>
 
 <p>
+  <% if @article.categories.any? %>
+    <%= render @article.categories%> 
+  <% end %>
+</p>
+
+<p>
   <strong>Description:</strong> 
   <%= @article.description%> 
 </p>
